@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: PoetsenOne;
-  src: url("/font/PoetsenOne-Regular.ttf");
+  src: url("./font/PoetsenOne-Regular.ttf");
 }
 
 [flex-center],
