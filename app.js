@@ -365,7 +365,7 @@ const startGame = () => {
     startY = touch.clientY;
   });
 
-  canvas.addEventListener("touchend", (event) => {
+  $.addEventListener("touchend", (event) => {
     const touch = event.changedTouches[0];
     endX = touch.clientX;
     endY = touch.clientY;
