@@ -359,7 +359,7 @@ const startGame = () => {
   let endX = 0;
   let endY = 0;
 
-  canvas.addEventListener("touchstart", (event) => {
+  $.addEventListener("touchstart", (event) => {
     const touch = event.touches[0];
     startX = touch.clientX;
     startY = touch.clientY;
