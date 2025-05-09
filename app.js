@@ -30,7 +30,7 @@ class App {
   }
 }
 
-const FPS = 15;
+const FPS = navigator.userAgentData.mobile ? 7 : 15;
 const frameInterval = 1000 / FPS;
 let lastTime = 0;
 let menuActive = true;
