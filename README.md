@@ -50,3 +50,10 @@ git clone https://github.com/undewined/snakid.git
 cd snakid
 open index.html # or use Live Server
 ```
+
+## 🌟 Support & Contributions
+If you like Snakid, feel free to ⭐️ this repo and share it with your friends!
+You can also contribute by forking the repo and submitting a pull request.
+Every little support means a lot! 🙌
+
+### [Got questions](https://t.me/a01100001)? Drop me a message anytime!
