@@ -10,11 +10,6 @@
   scrollbar-color: var(--primary-color) transparent;
 }
 
-@font-face {
-  font-family: PoetsenOne;
-  src: url("src/assets/font/PoetsenOne-Regular.ttf");
-}
-
 [hidden] {
   display: none !important;
 }
