@@ -1,6 +1,9 @@
 "use strict";
 
+import { Popup } from "./Components/Popup.js";
+
 const $ = document;
+const $$ = window;
 const $BODY = $.body;
 const $SET_TITLE = (title) => ($.title = title);
 const $SELECT = (selector) => $.querySelector(selector);
@@ -9,7 +12,7 @@ const $REMOVE_CLASS = (el, cls) => el.classList.remove(cls);
 const $ADD_CLASS = (el, cls) => el.classList.add(cls);
 
 $BODY.oncontextmenu = (e) => e.preventDefault();
-$.onkeydown = (e) => (e.key == "F12" ? e.preventDefault() : null);
+// $.onkeydown = (e) => (e.key == "F12" ? e.preventDefault() : null);
 
 class App {
   constructor() {
@@ -38,8 +41,8 @@ let menuActive = true;
 let app = new App();
 
 let htpCloseBtn = $SELECT(".htpPopUp__card_header-closeBtn");
-let scoreCloseBtn = $SELECT(".scorePopUp__card_header-closeBtn");
 let menu = $SELECT(".contentWrapper");
+let scoreBtn = $SELECT("#scores");
 let backBtn = $SELECT("#back");
 let canvas = $SELECT("#canvas");
 
@@ -478,12 +481,21 @@ const finishGame = () => {
 };
 
 const tutorialHandler = () => htpPopUp.classList.toggle("active");
-const scoresHandler = () => scorePopUp.classList.toggle("active");
 
 htpCloseBtn.addEventListener("click", tutorialHandler);
-scoreCloseBtn.addEventListener("click", scoresHandler);
-start.addEventListener("click", App.start);
 tutorial.addEventListener("click", tutorialHandler);
-scores.addEventListener("click", scoresHandler);
+start.addEventListener("click", App.start);
 
+scoreBtn.addEventListener("click", (event) => {
+  const { target } = event;
+
+  if (target.id == "scores") {
+    $BODY.insertAdjacentHTML(
+      "beforeend",
+      `<snk-popup title="scores"></snk-popup>`
+    );
+  }
+});
+
+$$.customElements.define("snk-popup", Popup);
 $.addEventListener("load", app.loadApp());
