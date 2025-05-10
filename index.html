@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <button id="back">Back to Menu</button>
+    <button id="back" hidden>Back to Menu</button>
     <div class="loader" flex-center>
       <div class="spinner"></div>
     </div>
@@ -49,41 +49,21 @@
         </div>
         <div class="menu">
           <button class="menu__buttons" id="start">Start Game</button>
-          <button class="menu__buttons" id="tutorial">How to Play</button>
           <button class="menu__buttons" id="scores">Scores</button>
         </div>
         <div class="credit">
           <h3 class="credit__text">
-            <a class="credit__link" target="_blank" href="https://undewined.github.io/snakid">UndewiNed Development</a>
+            <a
+              class="credit__link"
+              target="_blank"
+              href="https://undewined.github.io/snakid"
+              >UndewiNed Development</a
+            >
           </h3>
         </div>
       </div>
     </section>
     <canvas id="canvas" hidden width="720" height="480"></canvas>
-
-    <!-- How to Play PopUp -->
-    <div class="htpPopUp" id="htpPopUp" flex-center>
-      <div class="htpPopUp__card">
-        <div class="htpPopUp__card_header">
-          <h2 class="htpPopUp__card_header-title">How to Play:</h2>
-          <span class="htpPopUp__card_header-closeBtn">×</span>
-        </div>
-        <div class="hr"></div>
-        <div class="htpPopUp__card_content">
-          <h3>Computer:</h3>
-          <p class="htpPopUp__card_content-desc">
-            Use arrow keys to move the snake and eat the food. Avoid hitting
-            walls or yourself!
-            </ul>
-          </p>
-          <h3>Phone:</h3>
-          <p class="htpPopUp__card_content-desc">
-            Swipe to move the snake and eat the food. Avoid hitting
-            walls or yourself!
-          </p>
-        </div>
-      </div>
-    </div>
     <script type="module" src="src/app.js"></script>
     <noscript>Oops! Your browser dose'nt support JavaScript.</noscript>
   </body>

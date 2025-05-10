@@ -12,34 +12,35 @@ const $SET_TITLE = (title) => ($.title = title);
 $BODY.oncontextmenu = (e) => e.preventDefault();
 
 class App {
-  constructor() {
-    this.isLoaded = $BODY.classList.contains("active");
-  }
+  constructor() {}
 
-  loadApp() {
+  static LOAD() {
     setTimeout(() => {
-      $BODY.classList.toggle("active", !this.isLoaded);
-      $SET_TITLE(this.isLoaded ? "" : "Snakid - Cool Classic Game");
-    }, 100);
+      $BODY.classList.add("active");
+      $SET_TITLE("Snakid - cool texture-based snake game");
+    }, 300);
   }
 
-  static start() {
-    toggleMenu(menuActive);
+  static START() {
+    $SELECT("#back").removeAttribute("hidden");
+    $SELECT(".contentWrapper").setAttribute("hidden", "");
+    $SELECT("canvas").removeAttribute("hidden");
     startGame();
+  }
+
+  static STOP() {
+    $SELECT("#back").setAttribute("hidden", "");
+    $SELECT(".contentWrapper").removeAttribute("hidden");
+    $SELECT("canvas").setAttribute("hidden", "");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 }
 
 const FPS = 12;
 const frameInterval = 1000 / FPS;
 let lastTime = 0;
-let menuActive = true;
-let app = new App();
 
-const menu = $SELECT(".contentWrapper");
 const canvas = $SELECT("#canvas");
-const scoreBtn = $SELECT("#scores");
-const backBtn = $SELECT("#back");
-const htpCloseBtn = $SELECT(".htpPopUp__card_header-closeBtn");
 
 const ctx =
   canvas?.getContext("2d") ??
@@ -47,16 +48,7 @@ const ctx =
     throw new Error("Canvas not found!");
   })();
 
-const toggleMenu = (isActive) => {
-  menu.classList.toggle("close", isActive);
-  backBtn.classList.toggle("active", isActive);
-  menuActive = !isActive;
-  return !isActive;
-};
-
 const startGame = () => {
-  canvas.removeAttribute("hidden");
-
   const cellSize = 40;
   const cellNumber = 20;
   // const SCREEN_UPDATE = new Event("SCREEN_UPDATE");
@@ -462,26 +454,10 @@ const startGame = () => {
   requestAnimationFrame(gameLoop);
 };
 
-const finishGame = () => {
-  canvas.setAttribute("hidden", "");
-  clearInterval(snakeInterval);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-};
+$SELECT("#start")?.addEventListener("click", App.START);
+$SELECT("#back")?.addEventListener("click", App.STOP);
 
-const tutorialHandler = () => {
-  $SELECT("#htpPopUp")?.classList.toggle("active");
-};
-
-htpCloseBtn?.addEventListener("click", tutorialHandler);
-$SELECT("#tutorial")?.addEventListener("click", tutorialHandler);
-$SELECT("#start")?.addEventListener("click", App.start);
-
-backBtn?.addEventListener("click", () => {
-  toggleMenu(menuActive);
-  finishGame();
-});
-
-scoreBtn?.addEventListener("click", () => {
+$SELECT("#scores")?.addEventListener("click", () => {
   const prevPopup = $SELECT("snk-popup");
   if (prevPopup) prevPopup.remove();
 
@@ -491,4 +467,4 @@ scoreBtn?.addEventListener("click", () => {
 });
 
 $$.customElements.define("snk-popup", Popup);
-$.addEventListener("DOMContentLoaded", () => app.loadApp());
+$.addEventListener("DOMContentLoaded", App.LOAD);
