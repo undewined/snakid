@@ -34,14 +34,12 @@ export class Popup extends HTMLElement {
   }
 
   connectedCallback() {
-    this.removeDuplicates(); // ✅ فقط یک پاپ‌آپ باشه
-
-    this.setupCloseButton(); // ✅ ضربدر رو هندل کن
-    this.renderTitle(); // ✅ عنوان داینامیک
-    this.renderScores(); // ✅ لیست امتیاز‌ها
+    this.removeDuplicates();
+    this.setupCloseButton();
+    this.renderTitle();
+    this.renderScores();
   }
 
-  // پاک‌کردن پاپ‌آپ‌های قبلی
   removeDuplicates() {
     const existingPopups = document.querySelectorAll("snk-popup");
     if (existingPopups.length > 1) {
@@ -51,7 +49,6 @@ export class Popup extends HTMLElement {
     }
   }
 
-  // بستن با دکمه ضربدر
   setupCloseButton() {
     const closeBtn = this.SELECT(".popup__closeButton");
     closeBtn?.addEventListener("click", () => {
