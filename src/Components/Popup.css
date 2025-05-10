@@ -1,0 +1,81 @@
+:root {
+  --primary-color: #474bff;
+  --secondary-color: #fbfbfb;
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-family: PoetsenOne;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+@font-face {
+  font-family: PoetsenOne;
+  src: url("src/assets/font/PoetsenOne-Regular.ttf");
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.popupContainer {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__content {
+  width: 480px;
+  min-height: 72dvh;
+  max-height: 80dvh;
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 24px 30px;
+  position: relative;
+}
+
+.popup__header {
+  margin-top: calc(-16px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  color: var(--primary-color);
+}
+
+.popup__closeButton svg {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border-radius: 40px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.separator {
+  width: 100%;
+  background-color: #474bff;
+  height: 1px;
+  border-radius: 20px;
+  margin: 5px 0 20px 0;
+}
+
+.popup__description {
+  width: 100%;
+}
+
+li::marker {
+  color: var(--primary-color);
+}
+
+.mark {
+  color: var(--primary-color);
+}
