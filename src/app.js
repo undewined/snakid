@@ -1,7 +1,5 @@
 "use strict";
 
-import { Popup } from "./Components/Popup.js";
-
 const $ = document;
 const $$ = window;
 
