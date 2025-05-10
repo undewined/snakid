@@ -455,14 +455,4 @@ const startGame = () => {
 $SELECT("#start")?.addEventListener("click", App.START);
 $SELECT("#back")?.addEventListener("click", App.STOP);
 
-$SELECT("#scores")?.addEventListener("click", () => {
-  const prevPopup = $SELECT("snk-popup");
-  if (prevPopup) prevPopup.remove();
-
-  const popup = document.createElement("snk-popup");
-  popup.setAttribute("title", "Scores");
-  $BODY.appendChild(popup);
-});
-
-$$.customElements.define("snk-popup", Popup);
 $.addEventListener("DOMContentLoaded", App.LOAD);
