@@ -17,7 +17,6 @@ Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, wit
 - 🎨 Beautiful glassmorphism-inspired UI
 - 💾 Local high score saving _(coming soon)_
 - ⚡ Fast performance with minimal dependencies
-- 🧩 Modular code structure (ES Modules)
 
 ---
 
@@ -52,10 +51,9 @@ open index.html # or use Live Server
 ```
 
 ## 🌟 Support & Contributions
+
 If you like Snakid, feel free to ⭐️ this repo and share it with your friends!
 You can also contribute by forking the repo and submitting a pull request.
 Every little support means a lot! 🙌
 
----
-
-#### [Got questions](https://t.me/a01100001)? Drop me a message anytime!
+#### Got questions? Drop me a message anytime! [HERE](https://t.me/a01100001)
