@@ -403,12 +403,12 @@ const startGame = () => {
 
   let mouseStartX, mouseStartY;
 
-  document.addEventListener("mousedown", (e) => {
+  canvas.addEventListener("mousedown", (e) => {
     mouseStartX = e.clientX;
     mouseStartY = e.clientY;
   });
 
-  document.addEventListener("mouseup", (e) => {
+  canvas.addEventListener("mouseup", (e) => {
     const deltaX = e.clientX - mouseStartX;
     const deltaY = e.clientY - mouseStartY;
 
