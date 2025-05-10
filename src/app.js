@@ -4,26 +4,22 @@ import { Popup } from "./Components/Popup.js";
 
 const $ = document;
 const $$ = window;
+
 const $BODY = $.body;
+const $SELECT = (sel) => $.querySelector(sel);
 const $SET_TITLE = (title) => ($.title = title);
-const $SELECT = (selector) => $.querySelector(selector);
-const $CONTAINS_CLASS = (el, cls) => el.classList.contains(cls);
-const $REMOVE_CLASS = (el, cls) => el.classList.remove(cls);
-const $ADD_CLASS = (el, cls) => el.classList.add(cls);
 
 $BODY.oncontextmenu = (e) => e.preventDefault();
 // $.onkeydown = (e) => (e.key == "F12" ? e.preventDefault() : null);
 
 class App {
   constructor() {
-    this.isLoaded = $CONTAINS_CLASS($BODY, "active");
+    this.isLoaded = $BODY.classList.contains("active");
   }
 
   loadApp() {
     setTimeout(() => {
-      this.isLoaded
-        ? $REMOVE_CLASS($BODY, "active")
-        : $ADD_CLASS($BODY, "active");
+      $BODY.classList.toggle("active", !this.isLoaded);
       $SET_TITLE(this.isLoaded ? "" : "Snakid - Cool Classic Game");
     }, 100);
   }
@@ -40,17 +36,17 @@ let lastTime = 0;
 let menuActive = true;
 let app = new App();
 
-let htpCloseBtn = $SELECT(".htpPopUp__card_header-closeBtn");
-let menu = $SELECT(".contentWrapper");
-let scoreBtn = $SELECT("#scores");
-let backBtn = $SELECT("#back");
-let canvas = $SELECT("#canvas");
+const menu = $SELECT(".contentWrapper");
+const canvas = $SELECT("#canvas");
+const scoreBtn = $SELECT("#scores");
+const backBtn = $SELECT("#back");
+const htpCloseBtn = $SELECT(".htpPopUp__card_header-closeBtn");
 
 const ctx =
-  canvas?.getContext?.("2d") ||
+  canvas?.getContext("2d") ??
   (() => {
-    throw new Error("Oops! Canvas is not existed!");
-  });
+    throw new Error("Canvas not found!");
+  })();
 
 const toggleMenu = (isActive) => {
   menu.classList.toggle("close", isActive);
@@ -58,13 +54,6 @@ const toggleMenu = (isActive) => {
   menuActive = !isActive;
   return !isActive;
 };
-
-backBtn.addEventListener("click", () => {
-  toggleMenu(menuActive);
-  finishGame();
-});
-
-let snakeInterval;
 
 const startGame = () => {
   canvas.removeAttribute("hidden");
@@ -480,22 +469,27 @@ const finishGame = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
-const tutorialHandler = () => htpPopUp.classList.toggle("active");
+const tutorialHandler = () => {
+  $SELECT("#htpPopUp")?.classList.toggle("active");
+};
 
-htpCloseBtn.addEventListener("click", tutorialHandler);
-tutorial.addEventListener("click", tutorialHandler);
-start.addEventListener("click", App.start);
+htpCloseBtn?.addEventListener("click", tutorialHandler);
+$SELECT("#tutorial")?.addEventListener("click", tutorialHandler);
+$SELECT("#start")?.addEventListener("click", App.start);
 
-scoreBtn.addEventListener("click", (event) => {
-  const { target } = event;
+backBtn?.addEventListener("click", () => {
+  toggleMenu(menuActive);
+  finishGame();
+});
 
-  if (target.id == "scores") {
-    $BODY.insertAdjacentHTML(
-      "beforeend",
-      `<snk-popup title="scores"></snk-popup>`
-    );
-  }
+scoreBtn?.addEventListener("click", () => {
+  const prevPopup = $SELECT("snk-popup");
+  if (prevPopup) prevPopup.remove();
+
+  const popup = document.createElement("snk-popup");
+  popup.setAttribute("title", "Scores");
+  $BODY.appendChild(popup);
 });
 
 $$.customElements.define("snk-popup", Popup);
-$.addEventListener("load", app.loadApp());
+$.addEventListener("DOMContentLoaded", () => app.loadApp());
