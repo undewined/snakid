@@ -49,10 +49,8 @@ const ctx =
 const startGame = () => {
   const cellSize = 40;
   const cellNumber = 20;
-  // const SCREEN_UPDATE = new Event("SCREEN_UPDATE");
   let appleImage = new Image();
   appleImage.src = "src/assets/pic/texture/apple.png";
-  // new FontFace("PoetsenOne-Regular", "url(font/PoetsenOne-Regular.ttf)");
 
   class Vector2 {
     constructor(x, y) {
