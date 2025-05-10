@@ -10,7 +10,6 @@ const $SELECT = (sel) => $.querySelector(sel);
 const $SET_TITLE = (title) => ($.title = title);
 
 $BODY.oncontextmenu = (e) => e.preventDefault();
-// $.onkeydown = (e) => (e.key == "F12" ? e.preventDefault() : null);
 
 class App {
   constructor() {
