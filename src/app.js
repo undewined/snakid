@@ -453,4 +453,4 @@ const startGame = () => {
 $SELECT("#start")?.addEventListener("click", App.START);
 $SELECT("#back")?.addEventListener("click", App.STOP);
 
-$.addEventListener("DOMContentLoaded", App.LOAD);
+$$.addEventListener("load", App.LOAD);
